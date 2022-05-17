@@ -13,30 +13,19 @@
 			}
 
 			// 문자열에서 시작위치와 길이를 주면 substring 하여 리턴한다.
-			function fn_subString(str,start,size) {
-			 
+			function fn_subString(str,size) {
 			  var lim = 0;
-			  var pos = 0;
-			  var beg = 0;
-			  var minus = 0;
 			  var len = fn_strlen(str);
 			 
-			// 시작위치까지 skip하는 로직
-			  for(var i=0;pos<start;i++) {
-				pos += (str.charCodeAt(i) > 128) ? 2 : 1;
-			  }
-			 
-			  beg = i;
-			 
-			  // 시작위치에서 길이만큼 잘라내는 로직
+			  // 길이만큼 잘라내는 로직
 			  if (len < size) {
 				return str;
 			  } else {
-					for (var i=beg; i<len; i++) {
+					for (var i=0; i<len; i++) {
 					lim += (str.charCodeAt(i) > 128) ? 2 : 1;
 				   
 						if (lim > size) {
-						  return str.substring(beg,i);
+						  return str.substring(0,i);
 						}
 					}
 				}
@@ -141,7 +130,7 @@
 			
 					document.write("<tr>" + 
 						"<td width = 5> " + star + "</td>" +
-						"<td>" + fn_subString(itemNames[i],0,15) + "</td>" +
+						"<td>" + fn_subString(itemNames[i],15) + "</td>" +
 						"<td><p align=right>" + price[i].toLocaleString() + "</td>" + 
 						"<td><p align=right>" + amount[i] + "</td>" + 
 						"<td><p align=right>" + (price[i]*amount[i]).toLocaleString() + "</td>" + 
@@ -161,7 +150,8 @@
 				document.write("<table border=0 cellspacing=0 cellpadding=0>");
 				document.write("<tr> <br> </tr>");
 				document.write("<tr> <td width=200 align=right>총 품목 수량</td> <td width=140 align=right> "+itemNames.length+" </td> </tr>");
-				document.write("<tr> <td width=200 align=right>(*)면 세　물 품</td> <td width=140 align=right> "+totalTaxFreePrice.toLocaleString()+" </td> </tr>");
+				document.write("<tr> <td width=200 align=right>(*)면 세　물 품</td> <td width=140 align=right> "+totalTaxFreePrice.toLocaleString()
+																																		+" </td> </tr>");
 				document.write("<tr> <td width=200 align=right>과 세　물 품</td> <td width=140 align=right> "+ NetPrice.toLocaleString() +" </td> </tr>");
 				document.write("<tr> <td width=200 align=right>부　 가 　세</td> <td width=140 align=right> "+ tax.toLocaleString() +" </td> </tr>");
 				document.write("<tr> <td width=200 align=right>합　 　 　계</td> <td width=140 align=right> "+ totalPrice.toLocaleString() +" </td> </tr>");
@@ -186,22 +176,24 @@
 				document.write("-----------------------------------------------------")
 				document.write("<table border=0 cellspacing=0 cellpadding=0>");
 				document.write("<tr> <td width=120>0012 KEB 하나</td> <td align=right width = 220>541707**0484/35860658</td> </tr>");
-				document.write("<tr> <td width=120>카드결제(IC)</td> <td align=right width = 220>일시불 / 총 결제금액 구하기</td> </tr> </table>");
+				document.write("<tr> <td width=120>카드결제(IC)</td> <td align=right width = 220>일시불 / "+totalPrice.toLocaleString()+"</td> </tr> </table>");
 				document.write("-----------------------------------------------------")
 				<!-- 신세계포인트 적립 -->
 				document.write("<table border=0 cellspacing=0 cellpadding=0>");
 				document.write("<tr> <td colspan=3 align=center>[신세계포인트 적립]</td> </tr>");
 				document.write("<tr> <td colspan=3 align=left>정*훈 고객님의 포인트 현황입니다.</td> </tr>");
-				document.write("<tr> <td>금회발생포인트</td> <td width=145 align=right>9350**9995</td> <td width=70 align=right>"+ point.toLocaleString() +"</td> </tr>");
-				document.write("<tr> <td>누계(가용)포인트</td> <td align=right>"+ (totalPoint + point).toLocaleString() + "</td> <td align=right>"+"("+ totalPoint.toLocaleString() + ")"+"</td> </tr>");
+				document.write("<tr> <td>금회발생포인트</td> <td width=145 align=right>9350**9995</td> <td width=70 align=right>"+ point.toLocaleString()
+																																		+"</td> </tr>");
+				document.write("<tr> <td>누계(가용)포인트</td> <td align=right>"+ (totalPoint + point).toLocaleString() +
+																	"</td> <td align=right>"+"("+ totalPoint.toLocaleString() + ")"+"</td> </tr>");
 				document.write("<tr> <td colspan=3 align=left>*신세계포인트 유효기간은 2년입니다.</td> </tr> </table>");
 				document.write("-----------------------------------------------------");
 				<!-- 주차 -->
 				document.write("<table border=0 cellspacing=0 cellpadding=0>");
 				document.write("<tr> <td colspan=2 align=center>구매금액기준 무료주차시간 자동부여</td> </tr>");
 				document.write("<tr> <td width = 150>차량번호 :</td> <td align=right width = 190>32다****</td> </tr>");
-				document.write("<tr> <td width = 150>입차시간 :</td> <td align=right width = 190>"+date_format + " " + today.getHours() + ":" + 
-																			today.getMinutes()+ ":" + today.getSeconds()+"</td> </tr> </table>");
+				document.write("<tr> <td width = 150>입차시간 :</td> <td align=right width = 190>" + current_time
+																				+ ":" + addZero(today.getSeconds())+"</td> </tr> </table>");
 				document.write("-----------------------------------------------------");
 				<!-- 바코드 -->
 			    document.write("<table border=0 cellspacing=0 cellpadding=0 width = 340>");
