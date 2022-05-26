@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    input:focus::placeholder {
+      color: transparent;
+    }
+
+    select option[value=""][disabled] {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <form action="">
+    <input type="text" placeholder="이름"><br>
+    <input type="text" placeholder="아이디"><br>
+    <input type="password" placeholder="비밀번호">
+    <a href="#">비밀번호 도움말</a> <br>
+    <input type="password" placeholder="비밀번호 재입력"><br>
+
+    <select id="phone">
+      <option value="" disabled selected>휴대폰 번호 선택</option>
+      <option>010</option>
+      <option>011</option>
+    </select>
+    <a>-</a>
+    <input type="text" maxlength="4">
+    <a>-</a>
+    <input type="text" maxlength="4"><br>
+
+    <input type="text" placeholder="이메일">
+    <a>@</a>
+    <select id="mailSite">
+      <option value="" disabled selected>선택</option>
+      <option>naver.com</option>
+      <option>gmail.com</option>
+      <option>daum.net</option>
+    </select><br>
+
+    <br>
+
+    <select id="phone">
+      <option value="" disabled selected>전화번호</option>
+      <option>031</option>
+      <option>054</option>
+    </select>
+    <a>-</a>
+    <input type="text" maxlength="4">
+    <a>-</a>
+    <input type="text" maxlength="4"><br>
+
+    <select id="phone">
+      <option value="" disabled selected>휴대폰 번호</option>
+      <option>010</option>
+      <option>011</option>
+    </select>
+    <a>-</a>
+    <input type="text" maxlength="4">
+    <a>-</a>
+    <input type="text" maxlength="4">
+    <input type="submit" value="휴대폰 인증"><br>
+
+    <form action="">
+      <div class="control">
+        <label class="radio">
+          <input type="radio" name="answer">
+          인증받은 휴대폰 번호를 대표번호로 사용
+        </label>
+        <label class="radio">
+          <input type="radio" name="answer">
+          다른번호 등록
+        </label>
+        <label class="radio">
+          <input type="radio" name="answer">
+          다음에 등록함
+        </label>
+      </div>
+    </form>
+    <input type="text" placeholder="우편번호">
+    <input type="submit" value="주소찾기"><br>
+
+
+    <input type="submit" value="가입신청" style="background-color:red; color: white;">
+    <input type="submit" value="취소"><br>
+  </form>
+</body>
+
+</html>
