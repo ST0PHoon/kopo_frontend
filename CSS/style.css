@@ -1,0 +1,47 @@
+div {
+  background-color: aqua;
+  height: 300px;
+}
+
+body {
+  background-color: black;
+  /* 순서대로 지정 1, 2 */
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+h1 {
+  color: blanchedalmond;
+}
+
+/* .은 클래스를 셀랙할때 쓴다 */
+.red-text {
+  color: red;
+}
+
+.yellow-text {
+  color: yellow;
+}
+
+.big-size {
+  font-size: 50px;
+}
+
+.border {
+  border-style: solid;
+  border-width: 1px;
+}
+
+/* id 지정은 # 으로 한다. */
+#div1 {
+  background-color: rebeccapurple;
+}
+
+a {
+  text-decoration: none;
+  color: wheat;
+
+}
+
+a:hover {
+  color: white
+}
