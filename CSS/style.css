@@ -1,10 +1,10 @@
 div {
-  background-color: aqua;
-  height: 300px;
+  background-color: chocolate;
+  height: 100px;
 }
 
 body {
-  background-color: black;
+  background-color: floralwhite;
   /* 순서대로 지정 1, 2 */
   font-family: 'Noto Sans KR', sans-serif;
 }
@@ -19,7 +19,7 @@ h1 {
 }
 
 .yellow-text {
-  color: yellow;
+  color: orchid;
 }
 
 .big-size {
@@ -42,13 +42,33 @@ a {
 
 }
 
+/* 마우스를 대면 색상변경, 변화속도 0.5s */
 a:hover {
-  color: white;
+  color: black;
   transition: 0.5s;
 
 }
 
+/* a의 마우스가 사라지면 생삭변경, 변화속도 0.5s */
 a:not(:hover) {
   color: royalblue;
   transition: 0.5s;
+}
+
+.overline {
+  text-decoration: overline;
+  text-indent: 50px;
+}
+
+.underline {
+  text-decoration: underline;
+  text-indent: 50%;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
 }
