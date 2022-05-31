@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>changeCss2</title>
+</head>
+
+<body>
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #text {
+      text-align: center;
+    }
+
+    .list {
+      text-align: center;
+    }
+  </style>
+
+  <div class="container">
+    <div id="text">
+      입력이 실패했습니다.
+    </div>
+    <div class="list">
+      <button class="red-box" onclick="changeRed()">빨강</button>
+      <button class="blue-box" onclick="changeBlue()">파랑</button>
+      <button class="green-box" onclick="changeGreen()">초록</button>
+    </div>
+  </div>
+
+  <script>
+    let text = prompt('텍스트 값을 입력해주세요.')
+    if (text === '') {
+      let text = prompt('텍스트 값을 다시 입력해주세요.')
+    }
+
+    let $text = document.getElementById('text');
+    $text.innerText = text;
+
+    function changeRed() {
+      $text.style.color = 'red';
+      alert('빨간색으로 변경되었습니다.');
+    }
+
+    function changeBlue() {
+      $text.style.color = 'blue';
+      alert('파란색으로 변경되었습니다.');
+    }
+
+    function changeGreen() {
+      $text.style.color = 'green';
+      alert('초록색으로 변경되었습니다.');
+    }
+  </script>
+</body>
+
+</html>
