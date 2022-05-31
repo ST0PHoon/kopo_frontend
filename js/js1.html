@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 외부선언 -->
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <input type="button" value="인사" onclick="greeting()">
+
+  <script>
+    // typeof : number, string, boolean, Object, Null 등
+    //상수
+    const NUM = 10;
+    //변수, var는 재선언이 가능하다.
+    let i = 10;
+    i = 20;
+    var k = 10;
+    var k = 20;
+
+    //타입이 따로 없다. 사용 도중 타입이 바뀔 수 있으니 주의
+    let num = 10;
+    // num = 'hello';
+    let text = 'hello';
+    // text = 10;
+
+    //문자열 병합
+    let name = '정지훈';
+    let age = 28;
+    let result = name + '는' + age + '살 입니다.';
+    result = '${name}는 ${age}살입니다.';
+
+    //배열 출력 2가지
+    let items = [1, 2, 3, 4];
+    for (var t = 0; t < items.length; t++) {
+      console.log(items[t]);
+    }
+
+    for (let item in items) {
+      console.log(item);
+    }
+
+    //Object, JSON 형식(key: value)
+    let person = {
+      name: '정지훈',
+      age: 28
+    }
+
+  </script>
+
+</body>
+
+</html>
