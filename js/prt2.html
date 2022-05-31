@@ -31,7 +31,7 @@
     <div id="text">
       입력이 실패했습니다.
     </div>
-    <div class="list">
+    <div id="list">
       <button class="red-box" onclick="changeRed()">빨강</button>
       <button class="blue-box" onclick="changeBlue()">파랑</button>
       <button class="green-box" onclick="changeGreen()">초록</button>
@@ -42,6 +42,9 @@
     let text = prompt('텍스트 값을 입력해주세요.')
     if (text === '') {
       let text = prompt('텍스트 값을 다시 입력해주세요.')
+
+      let $list = document.getElementById('list');
+      $list.style.display = "none";
     }
 
     let $text = document.getElementById('text');
