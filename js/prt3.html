@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .clickStyle {
+      color: grey;
+      background-color: white;
+      margin-left: 10px;
+      padding: 50px;
+      border: 2px solid gray;
+    }
+
+    .noClickStyle {
+      color: white;
+      background-color: gray;
+      margin-left: 10px;
+      padding: 50px;
+      border: 2px solid gray;
+    }
+  </style>
+
+  <div class="container">
+    <div id="html-box" class="noClickStyle" onclick="clickDiv('html-box')"> html </div>
+    <div id="css-box" class="noClickStyle" onclick="clickDiv('css-box')"> css </div>
+    <div id="javascript-box" class="noClickStyle" onclick="clickDiv('javascript-box')"> javascript </div>
+  </div>
+
+  <script>
+    function clickDiv(text) {
+      let $htmlBox = document.getElementById('html-box');
+      let $cssBox = document.getElementById('css-box');
+      let $javascriptBox = document.getElementById('javascript-box');
+
+      $htmlBox.className = "noClickStyle";
+      $cssBox.className = "noClickStyle";
+      $javascriptBox.className = "noClickStyle";
+
+      document.getElementById(text).className = "clickStyle";
+    }
+  </script>
+</body>
+
+</html>
