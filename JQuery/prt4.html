@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .clickStyle {
+      color: grey;
+      background-color: white;
+      margin-left: 10px;
+      padding: 50px;
+      border: 2px solid gray;
+    }
+
+    .noClickStyle {
+      color: white;
+      background-color: gray;
+      margin-left: 10px;
+      padding: 50px;
+      border: 2px solid gray;
+    }
+  </style>
+
+  <div class="container">
+    <div id="html-box" class="noClickStyle" onclick="clickDiv('html-box')"> html </div>
+    <div id="css-box" class="noClickStyle" onclick="clickDiv('css-box')"> css </div>
+    <div id="javascript-box" class="noClickStyle" onclick="clickDiv('javascript-box')"> javascript </div>
+  </div>
+
+  <script>
+    function clickDiv(text) {
+      let $htmlBox = $('#html-box');
+      let $cssBox = $('#css-box');
+      let $javascriptBox = $('#javascript-box');
+
+      $htmlBox.attr('class', 'noClickStyle');
+      $cssBox.attr('class', 'noClickStyle');
+      $javascriptBox.attr('class', 'noClickStyle');
+
+      let selectedText = `#${text}`;
+
+      $(selectedText).attr('class', 'clickStyle');
+
+    }
+  </script>
+</body>
+
+</html>
