@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <script>
+    $(function () {
+      let text = prompt('텍스트 값을 입력해주세요.')
+      if (text === '' || text === null) {
+        text = prompt('텍스트 값을 다시 입력해주세요.')
+
+        if (text === '' || text === null) {
+          $('#list').css('display', 'none');
+        }
+      }
+
+      $('#text').text(text);
+
+      function changeColor(colorText) {
+        $('#text').css('color', colorText);
+        alert(`${colorText}색으로 변경됩니다.`);
+      }
+    });
+  </script>
+
+
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #text {
+      text-align: center;
+    }
+
+    .list {
+      text-align: center;
+    }
+  </style>
+
+  <div class="container">
+    <div id="text">
+      입력이 실패했습니다.
+    </div>
+    <div id="list">
+      <button class="red-box" onclick="changeColor('red')">빨강</button>
+      <button class="blue-box" onclick="changeColor('blue')">파랑</button>
+      <button class="green-box" onclick="changeColor('green')">초록</button>
+    </div>
+  </div>
+</body>
+
+</html>
