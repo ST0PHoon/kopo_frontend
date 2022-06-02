@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <style>
+    table,
+    tr,
+    th,
+    td {
+      border: 1px solid black;
+      border-spacing: 0px 0px;
+    }
+
+    table {
+      width: 500px;
+    }
+  </style>
+
+  <table>
+    <tr>
+      <th>
+        <input type="checkbox" name="all" id="all">확인
+      </th>
+      <th>제목</th>
+      <th>글쓴시간</th>
+    </tr>
+    <tr>
+      <td><input type="checkbox" name="chk"></td>
+      <td class="text-content" value="">1111111</td>
+      <td class="text-time">11:11</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" name="chk"></td>
+      <td class="text-content">222222222</td>
+      <td class="text-time">11:11</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" name="chk"></td>
+      <td class="text-content">333333333</td>
+      <td class="text-time">11:11</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" name="chk"></td>
+      <td class="text-content">4444444</td>
+      <td class="text-time">11:11</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" name="chk"></td>
+      <td class="text-content">5555555</td>
+      <td class="text-time">11:11</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" name="chk"></td>
+      <td class="text-content">66666666</td>
+      <td class="text-time">11:11</td>
+    </tr>
+  </table>
+
+  <div>
+    <input id="log_button" type="button" value="로그">
+  </div>
+
+  <script>
+    $('#all').click(function () {
+      // checked면 true, 아니면 false
+      let selectCheckTest = $('input:checkbox[name=all]').is(':checked');
+      let selectCheck = true;
+      // input 태그중에 checkboc중에 name이 chk인 것 만 골라라
+      let checkBoxes = $('input:checkbox[name=chk]').length;
+      let checkedBoxes = $('input:checkbox[name=chk]:checked').length;
+
+      // 내부 순환, for문과 비슷하다.
+      if (selectCheckTest) {
+        selectCheck = true;
+      } else {
+        selectCheck = false;
+      }
+
+      //each를 사용해서 checked 하거나 삭제
+      $('input:checkbox[name=chk]').each(function () {
+        $(this).prop('checked', selectCheck);
+      })
+    });
+
+    $('#log_button').click(function () {
+
+      var rowData = new Array();
+      var tdArr = new Array();
+      var checkbox = $("input[name=chk]:checked");
+
+      if ($('input[name=chk]:checkbox:checked').length > 0) {
+        //체크된 체크박스 값을 가져온다.
+        checkbox.each(function (i) {
+
+          // checkbox.parent() : checkbox의 부모는 <td>이다.
+          // checkbox.parent().parent() : <td>의 부모이므로 <tr>이다.
+
+          var tr = checkbox.parent().parent().eq(i);
+          var td = tr.children();
+
+          // 체크된 row의 모든 값을 배열에 담는다.
+          rowData.push(tr.text());
+
+          // td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
+          var name = td.eq(1).text()
+          tdArr.push(name);
+          console.log("제목 : " + name);
+        });
+      } else {
+        alert('선택된 제목이 없습니다.');
+      }
+
+    });
+  </script>
+</body>
+
+</html>
