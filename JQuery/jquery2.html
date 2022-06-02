@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <style>
+    table,
+    tr,
+    th,
+    td {
+      border: 1px solid black;
+    }
+
+    table {
+      width: 500px;
+    }
+  </style>
+
+  <table>
+    <tr>
+      <th>
+        <input type="checkbox" name="all" id="all">확인
+      </th>
+      <th>제목</th>
+      <th>글쓴시간</th>
+    </tr>
+    <tr>
+      <td><input type="checkbox" name="chk" id=""></td>
+      <td>1111111</td>
+      <td>11:11</td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" name="chk" id=""></td>
+      <td>222222222222</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" name="chk" id=""></td>
+      <td>3333333333333333</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" name="chk" id=""></td>
+      <td>4444444444444</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" name="chk" id=""></td>
+      <td>5555555555555555</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" name="chk" id=""></td>
+      <td>666666666666</td>
+      <td></td>
+    </tr>
+  </table>
+
+  <div>
+    <input id="log_button" type="button" value="로그">
+  </div>
+
+  <script>
+    //$('#log_button').val();  value 얻기
+    //$('#log_button').val('쓰기');  value 쓰기
+
+    $('#log_button').click(function () {
+      // input 태그중에 checkboc중에 name이 chk인 것 만 골라라
+      let $checkBoxes = $('input:checkbox[name=chk]');
+      console.log($checkBoxes.length);
+
+      // checked만 골라라
+      console.log($('input:checkbox[name=chk]:checked').length);
+
+      // name이 chk인 checkbox에 checked를 붙여라, 전체 선택
+      // $('input[name=chk]:checkbox').prop('checked', true);
+
+      // name이 chk인 checkbox에 checked를 뺴라, 전체 선택
+      // $('input[name=chk]:checkbox').prop('checked', false);
+
+      // 내부 순환, for문과 비슷하다.
+      $('input[name=chk]:checkbox').each(function () {
+        // console.log("!!!");
+        $(this).prop('checked', true);
+
+        // if($(this).is(':checked')) {
+        //   console.log('ASD')
+        // }
+      })
+    })
+  </script>
+</body>
+
+</html>
