@@ -41,10 +41,12 @@
   <script>
     let text = prompt('텍스트 값을 입력해주세요.')
     if (text === '') {
-      let text = prompt('텍스트 값을 다시 입력해주세요.')
+      text = prompt('텍스트 값을 다시 입력해주세요.')
 
-      let $list = document.getElementById('list');
-      $list.style.display = "none";
+      if (text === '') {
+        let $list = document.getElementById('list');
+        $list.style.display = "none";
+      }
     }
 
     let $text = document.getElementById('text');
