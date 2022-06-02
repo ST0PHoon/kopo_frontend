@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <style>
+    .big-text {
+      font-size: xx-large;
+    }
+
+    .color-red {
+      color: red;
+    }
+  </style>
+
+  <script>
+    // jquery 시작은 $로 한다.
+    $(function () {
+      // onload 와 동일한 시점
+      console.log('onLoad');
+      // 기존 방식의 id 얻기
+      $jsTitle = document.getElementById('title')
+      console.log($jsTitle);
+      console.log($jsTitle.innerText);
+      // jquery 객체를 return 한다는 차이점이 있다.
+      $title = $('#title');
+      console.log($title);
+
+      // 기존의 onclick 부여
+      document.getElementById('button1').addEventListener('click', function () {
+        console.log('click1');
+      });
+
+      // JQ onclick 부여
+      $('#button1').on('click', function () {
+        console.log('JQ click');
+      });
+
+      // JQ 2번째 방법
+      $('#button1').click(function () {
+        console.log('Jq 2 click');
+      });
+
+      // 메소드 체인, 코드를 수행하고나면 자신을 리턴하기 때문에 연속해서 수행할 수 있다.
+      $('#button2').click(function () {
+        console.log('JQ click2');
+      }).mouseover(function () {
+        console.log('JQ 마우스 오버2')
+      }).mouseleave(function () {
+        console.log('JQ 마우스 리브2')
+      });
+
+      //innerHTMl, innerText에 대응하는 기능
+      $('#button3').click(function () {
+        $('#text').html('<b>b태그</b>');
+      });
+
+      $('#button4').click(function () {
+        $('#text2').append('<b>b태그</b>')
+      });
+
+      $('#text3').mouseover(function () {
+        console.log(this);  //this: js로 얻던 tag 정보
+        console.log($(this)); //jq 객체로 변경
+        // 속성 변경
+        // $(this).attr('class', 'color-red');
+        // css 변경
+        $(this).css('color', 'red');
+      })
+    });
+  </script>
+
+  <div id="title">title</div>
+  <button id="button1"> click 1 </button>
+  <button id="button2"> click 2 </button>
+
+
+  <div id="text">여기 </div>
+  <button id="button3"> click 3 </button>
+
+  <div id="text2">여기 </div>
+  <button id="button4"> click 4 </button>
+
+  <div id="text3" class="big-text">big-text</div>
+</body>
+
+</html>
