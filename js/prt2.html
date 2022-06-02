@@ -32,18 +32,18 @@
       입력이 실패했습니다.
     </div>
     <div id="list">
-      <button class="red-box" onclick="changeRed()">빨강</button>
-      <button class="blue-box" onclick="changeBlue()">파랑</button>
-      <button class="green-box" onclick="changeGreen()">초록</button>
+      <button class="red-box" onclick="changeColor('red')">빨강</button>
+      <button class="blue-box" onclick="changeColor('blue')">파랑</button>
+      <button class="green-box" onclick="changeColor('green')">초록</button>
     </div>
   </div>
 
   <script>
     let text = prompt('텍스트 값을 입력해주세요.')
-    if (text === '') {
+    if (text === '' || text === null) {
       text = prompt('텍스트 값을 다시 입력해주세요.')
 
-      if (text === '') {
+      if (text === '' || text === null) {
         let $list = document.getElementById('list');
         $list.style.display = "none";
       }
@@ -52,19 +52,9 @@
     let $text = document.getElementById('text');
     $text.innerText = text;
 
-    function changeRed() {
-      $text.style.color = 'red';
-      alert('빨간색으로 변경되었습니다.');
-    }
-
-    function changeBlue() {
-      $text.style.color = 'blue';
-      alert('파란색으로 변경되었습니다.');
-    }
-
-    function changeGreen() {
-      $text.style.color = 'green';
-      alert('초록색으로 변경되었습니다.');
+    function changeColor(colorText) {
+      $text.style.color = colorText;
+      alert(`${colorText}색으로 변경됩니다.`);
     }
   </script>
 </body>
