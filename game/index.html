@@ -22,6 +22,23 @@
 
   <script>
     let isJumping = false;
+    let isGameOver = false;
+
+    function marioDown() {
+      if (isGameOver) {
+        return;
+      }
+
+      let marioRight = 250;
+
+      let goombaLeft = Number(('#goomba').css('left').replace('px', ''));
+
+      if (goombaLeft <= marioRight && isJumping == false) {
+        console.log('die');
+        $('#goomba').stop();
+        isGameOver = true;
+      }
+    }
 
     function getRandomInt(min, max) {
       min = Math.ceil(min);
@@ -62,8 +79,10 @@
             break;
         }
       });
-
+      // 굼바 출발
       goombaStart();
+      //충돌 체크
+      // setInterval(marioDown, 10);
     });
 
 
