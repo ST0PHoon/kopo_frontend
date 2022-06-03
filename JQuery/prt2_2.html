@@ -73,21 +73,10 @@
     $('#all').click(function () {
       // checked면 true, 아니면 false
       let selectCheckTest = $('input:checkbox[name=all]').is(':checked');
-      let selectCheck = true;
-      // input 태그중에 checkboc중에 name이 chk인 것 만 골라라
-      let checkBoxes = $('input:checkbox[name=chk]').length;
-      let checkedBoxes = $('input:checkbox[name=chk]:checked').length;
-
-      // 내부 순환, for문과 비슷하다.
-      if (selectCheckTest) {
-        selectCheck = true;
-      } else {
-        selectCheck = false;
-      }
 
       //each를 사용해서 checked 하거나 삭제
       $('input:checkbox[name=chk]').each(function () {
-        $(this).prop('checked', selectCheck);
+        $(this).prop('checked', selectCheckTest);
       })
     });
 
