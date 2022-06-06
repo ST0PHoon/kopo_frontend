@@ -1,19 +1,112 @@
+html {
+  cursor: url('../assets/marioCursor.png'), auto;
+}
+
+body {
+  overflow-x: hidden;
+
+}
+
 .container {
+  width: 1200px;
+  height: 600px;
   position: relative;
-  border: 1px solid black;
-  height: 90vh;
+  cursor: pointer;
 }
 
 #mario {
-  position: absolute;
   width: 200px;
-  bottom: 50px;
+  position: absolute;
+  bottom: 85px;
   left: 50px;
 }
 
 #goomba {
   width: 100px;
   position: absolute;
-  bottom: 50px;
+  bottom: 85px;
   right: 50px;
+}
+
+#killer {
+  position: absolute;
+  width: 100px;
+  left: 220px;
+  bottom: 105px;
+  transform: scaleX(-1);
+  display: none;
+}
+
+.background {
+  position: absolute;
+  background-image: url("../assets/bg.png");
+  width: 200%;
+  height: 100%;
+  animation: slide 3s linear infinite;
+}
+
+#score {
+  position: relative;
+  left: 10px;
+  top: 10px;
+  font-family:'SuperMario1', serif;
+  font-size: 30px;
+}
+
+.gameStart {
+  position: relative;
+  top: 100px;
+  text-align: center;
+  font-size: 100px;
+  font-family:'SuperMario2', serif;
+}
+
+.gameOver {
+  position: relative;
+  top : 100px;
+  text-align: center;
+  font-size: 100px;
+  font-family:'SuperMario2', serif;
+}
+
+.bestScore {
+  font-size: 35px;
+  margin-top: 40px;
+}
+
+.startButton {
+  font-size: 35px;
+  margin-top: 200px;
+}
+
+.exitButton  {
+  margin-top: 15px;
+  font-size: 35px;
+}
+
+.continueButton {
+  margin-top: 55px;
+  font-size: 35px;
+}
+
+@keyframes slide {
+  from {
+    left: 0px;
+  }
+
+  to {
+    left: -80%;
+  }
+}
+
+@font-face {
+    font-family: "SuperMario1";
+    src: url("../font/SuperMario1.ttf") format("truetype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "SuperMario2";
+    src: url("../font/SuperMario2.ttf") format("truetype");
+    font-weight: normal;
 }

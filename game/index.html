@@ -1,100 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="css/style.css">
-  <!-- <script src="js/script.js"></script> -->
-</head>
+  <body>
+    <div class="container">
+      <div class="background"></div>
+      <img class="gaming" id="mario" src="assets/mario.gif" alt="mario" />
+      <img class="gaming" id="goomba" src="assets/goomba.gif" alt="goomba" />
+      <img class="gaming" id="killer" src="assets/killer.png" alt="killer" />
+      <div class="gaming" id="score">score  0</div>
+      
+      <div class="gameStart">
+        <div class="gameTitle">
+          SUPER MARIO
+        </div>
+        <div class="startButton" onclick="gameStartKey(false, true)">
+          GAME START
+        </div> 
+      </div>
 
-<body>
-  <div class="container">
-    <img id="mario" src="assets/mario.gif" alt="mario">
+      <div class="gameOver">
+        <div class="gameOverTitle">
+          GAME OVER
+        </div>
+        <div class="bestScore">
+          BEST SCORE 0
+        </div>
+        <div class="continueButton" onclick="gameStartKey(false, true)">
+          Continue
+        </div>
+        <div class="exitButton" onclick="gameStartKey(true, false)">
+          Exit
+        </div>
+      </div>
+    </div>
 
-    <img id="goomba" src="assets/goomba.gif" alt="goomba">
-    <div id="score">점수 : 0</div>
-  </div>
 
 
-  <script>
-    let isJumping = false;
-    let isGameOver = false;
-    let score = 0;
+    <script>
+      let isGameStart = true;
+      let isJumping = false;
+      let isGameOver = false;
+      let isKillerStart = false;
+      let score = 0;
+      let bestScore = 0;
 
-    function marioDown() {
-      if (isGameOver) {
-        return;
+      function gameStartKey(startGame, continueKey) {
+        showStart(startGame);
+        goombaInit();
+        killerInit();
+        score = 0;
+        setScore(0);
+        if (continueKey) {
+          setTimeout(goombaStart, getRandomInt(500, 1000));
+        }
       }
 
-      let marioRight = 250;
-
-      let goombaLeft = Number(('#goomba').css('left').replace('px', ''));
-
-      if (goombaLeft <= marioRight && isJumping == false) {
-        console.log('die');
-        $('#goomba').stop();
-        isGameOver = true;
+      function showStart(isGameStart) {
+        if (isGameStart == true) {
+          $('.gameStart').show();
+          $('.gaming').hide();
+          $('.gameOver').hide();
+          isGameOver = true;
+        } else {
+          $('.gameStart').hide();
+          $('.gaming').show();
+          $('.gameOver').hide();
+          isGameOver = false;
+        }
       }
-    }
 
-    function getRandomInt(min, max) {
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
-    }
+      function goombaDown() {
+        let goombaLeft = Number($("#goomba").css("left").replace("px", ""));
+        let killerRight =
+          Number($("#killer").css("left").replace("px", "")) + 100;
 
-    function goombaStart() {
-      let speed = getRandomInt(300, 700); //1에서 2초
-      let respawnTime = getRandomInt(1000, 1500); //1에서 2초
+        if (isKillerStart && goombaLeft <= killerRight) {
+          score += 200;
 
-      $('#goomba').animate({ left: '-120px' }, 2000, function () {
-        if (isGameOver == false) {
-          score += 100;
-          $('#score').text(`점수 : ${score}`);
+          setScore(score);
+
+          // 킬러 원래자리로
+          killerInit();
+          isKillerStart = false;
+          // 굼바 없애고
+          $("#goomba").stop().hide();
+          goombaInit();
+          // 굼바 출현
+          if (isGameOver == false) {
+            setTimeout(goombaStart, getRandomInt(500, 1000));  
+          }
+        }
+      }
+
+      function marioDown() {
+        if (isGameOver) {
+          return;
         }
 
+        let marioRight = 250;
+        let goombaLeft = Number($("#goomba").css("left").replace("px", ""));
 
-        // 초기 위치로 이동
-        $('#goomba').css('right', '-150px').css('left', '');
+        if (goombaLeft <= marioRight && isJumping == false) {
+          $("#goomba").stop().css('left','');
+         
+          if (score > bestScore) {
+            bestScore = score;
+          }
+          setBestScore(bestScore);
 
-        //다시 출발
-        setTimeout(goombaStart, respawnTime);
-      });
-    }
-
-    function jump() {
-      if (isJumping) {
-        return;
+          $('.gaming').hide();
+          $('.gameOver').show();
+          isGameStart = false;
+          isGameOver = true;
+        }
       }
 
-      isJumping = true;
-      $('#mario').animate({ bottom: '+=200px' }, 'fast')
-        .animate({ bottom: '-=200px' }, 1000, function () {
-          isJumping = false;
+      function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
+      }
+
+      function killerStart(ready) {
+        if (isKillerStart) {
+          return;
+        }
+        if (!ready) {
+          // 발사
+          isKillerStart = true;
+          $("#killer").show().animate({ left: "1680px" }, 1000, function () {
+              // 원래 자리로 이동
+              killerInit();
+              isKillerStart = false;
+          });
+        }
+      }
+
+      function goombaStart() {
+        let speed = getRandomInt(1000, 2000); // 1~2초 사이
+        let respawnTime = getRandomInt(1000, 2000); // 1~2초 사이
+
+        $("#goomba").animate({ left: "-120px" }, speed, function () {
+          if (isGameOver == false) {
+            score += 100;
+            setScore(score);
+            // 왼쪽 끝까지 가면 초기 위치로 이동
+            goombaInit();
+            // 1초 후에 다시 출발
+            setTimeout(goombaStart, respawnTime);
+          } 
         });
-    }
+      }
 
-    $(function () {
-      $('body').keydown(function (event) {
-        switch (event.key) {
-          case ' ':
-            jump();
-            break;
+      // 점수 세팅, 위치 초기화
+      function goombaInit() {
+        $("#goomba").css("left", "").css("right", "-150px").show();
+      }
+      
+      function killerInit() {
+        $("#killer").css("left", "220px").stop().hide();
+      }
+
+      function setScore(score) {
+        $("#score").text(`score ${score}`);
+      }
+
+      function setBestScore(bestScore) {
+        $(".bestScore").html(`BEST SCORE<br>${bestScore}`);
+      }
+
+      function jump() {
+        // 연타 방지
+        if (isJumping) {
+          return;
         }
+
+        isJumping = true;
+        $("#mario")
+          .animate({ bottom: "+=200px" }, "fast")
+          .animate({ bottom: "-=200px" }, 1000, function () {
+            isJumping = false;
+          });
+      }
+
+      // onload
+      $(function () {
+        $("body").keydown(function (event) {
+          switch (event.key) {
+            case " ":
+              jump();
+              break;
+            case "Control":
+              killerStart(isGameOver);
+              break;
+          }
+        });
+
+        showStart(true);
+        // 충돌 체크
+        setInterval(marioDown, 10);
+        // 굼바 죽었나 체크
+        setInterval(goombaDown, 10);
       });
-      // 굼바 출발
-      goombaStart();
-      //충돌 체크
-      // setInterval(marioDown, 10);
-    });
-
-
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
