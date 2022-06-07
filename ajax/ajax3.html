@@ -12,16 +12,21 @@
   <script>
     function loadDoc() {
       // 비동기 == 오래걸리는 동작
-      fetch('ajax_info.txt')
+      fetch('people.json')
         // 화살표 함수(arrow function) / lambda expression
-        .then(response => response.text())  //기다렸다가 여기서 처리
-        .then(text => {
-          document.getElementById('demo').innerHTML = text;
+        .then(response => response.json())  //기다렸다가 여기서 처리
+        .then(json => {
+          let result = `${json.name} : ${json.skill}`;
+          // 위에서 선언한 형태로 출력
+          document.getElementById('demo').innerHTML = result;
+          // json 형태로 출력
+          document.getElementById('json').innerHTML = JSON.stringify(json);
         });
     }
   </script>
 
   <div id="demo"></div>
+  <div id="json"></div>
   <button onclick="loadDoc()">get data</button>
 </body>
 
