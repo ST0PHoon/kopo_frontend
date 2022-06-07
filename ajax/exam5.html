@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <style>
+    #list {
+      text-align: center;
+    }
+
+    img {
+      width: 30vw;
+    }
+
+    .title {
+      width: 30vw;
+      margin: 0px;
+      text-align: center;
+      height: 50px;
+    }
+
+    .movie {
+      display: inline-block;
+      width: 31vw;
+    }
+  </style>
+</head>
+
+<body onload="loadData()">
+  <script>
+    function moveCommentsPage(postId) {
+      //페이지 이동
+      document.location.href = `exam6.html?id=${postId}`;
+    }
+
+    function loadData() {
+      fetch('https://api.themoviedb.org/3/movie/upcoming?api_key=a64533e7ece6c72731da47c9c8bc691f&language=ko-KR&page=1')
+        .then(response => response.json())
+        .then(jsonArray => {
+          let $list = $('#list');
+          let resultsArray = jsonArray.results;
+
+          resultsArray.forEach((results) => {
+            $list.append(`<div class="movie" onclick="moveCommentsPage(${results.id})">
+              <img src="https://image.tmdb.org/t/p/w500${results.poster_path}" alt="">
+              <div class="title">${results.title}</div></div>`);
+          })
+        });
+    }
+  </script>
+
+  <div id="list"></div>
+</body>
+
+</html>

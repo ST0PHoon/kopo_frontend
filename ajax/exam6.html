@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <style>
+    body {
+      overflow-x: hidden
+    }
+
+    h1 {
+      margin: 10px 2px;
+    }
+
+    #container {
+      width: 100vw;
+      text-align: center;
+    }
+
+    .title {
+      font-size: 30px;
+      margin-bottom: 30px;
+    }
+
+    img {
+      margin-bottom: 20px;
+    }
+
+    .story {
+      display: inline-block;
+      width: 60vw;
+      margin: 0px;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    $(function () {
+      // url 뒤 ? 부터 (ex: ?id=1)
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const id = urlParams.get('id');
+
+      loadData(id);
+    });
+
+    function loadData(id) {
+      fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=a64533e7ece6c72731da47c9c8bc691f&language=ko-KR&page=1`)
+        .then(response => response.json())
+        .then(jsonArray => {
+          let $container = $('#container');
+          let resultsArray = jsonArray.results;
+          resultsArray.forEach((results) => {
+            if (results.id == id) {
+              $container.append(`<div class="title"> ${results.title} </div>
+                <img src="https://image.tmdb.org/t/p/w500${results.poster_path}" alt=""><br>
+                <div class="story"> ${results.overview} </div>`);
+            }
+          });
+        });
+    }
+  </script>
+
+  <h1>영화정보</h1>
+
+  <div id="container">
+    <div class="title"> </div>
+    <img src="" alt="">
+    <div class="story"> </div>
+  </div>
+
+</body>
+
+</html>
