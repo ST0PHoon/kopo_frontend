@@ -49,11 +49,7 @@ body {
   position: relative;
   left: 10px;
   top: 10px;
-<<<<<<< HEAD
   font-family: 'SuperMario1', serif;
-=======
-  font-family:'SuperMario1', serif;
->>>>>>> 55f9d77f4c25f5aa5955fd0c6cfe16d42be0d099
   font-size: 30px;
 }
 
@@ -62,26 +58,15 @@ body {
   top: 100px;
   text-align: center;
   font-size: 100px;
-<<<<<<< HEAD
   font-family: 'SuperMario2', serif;
-=======
-  font-family:'SuperMario2', serif;
->>>>>>> 55f9d77f4c25f5aa5955fd0c6cfe16d42be0d099
 }
 
 .gameOver {
   position: relative;
-<<<<<<< HEAD
   top: 100px;
   text-align: center;
   font-size: 100px;
   font-family: 'SuperMario2', serif;
-=======
-  top : 100px;
-  text-align: center;
-  font-size: 100px;
-  font-family:'SuperMario2', serif;
->>>>>>> 55f9d77f4c25f5aa5955fd0c6cfe16d42be0d099
 }
 
 .bestScore {
@@ -94,11 +79,7 @@ body {
   margin-top: 200px;
 }
 
-<<<<<<< HEAD
 .exitButton {
-=======
-.exitButton  {
->>>>>>> 55f9d77f4c25f5aa5955fd0c6cfe16d42be0d099
   margin-top: 15px;
   font-size: 35px;
 }
@@ -119,7 +100,6 @@ body {
 }
 
 @font-face {
-<<<<<<< HEAD
   font-family: "SuperMario1";
   src: url("../font/SuperMario1.ttf") format("truetype");
   font-weight: normal;
@@ -130,15 +110,3 @@ body {
   src: url("../font/SuperMario2.ttf") format("truetype");
   font-weight: normal;
 }
-=======
-    font-family: "SuperMario1";
-    src: url("../font/SuperMario1.ttf") format("truetype");
-    font-weight: normal;
-}
-
-@font-face {
-    font-family: "SuperMario2";
-    src: url("../font/SuperMario2.ttf") format("truetype");
-    font-weight: normal;
-}
->>>>>>> 55f9d77f4c25f5aa5955fd0c6cfe16d42be0d099
