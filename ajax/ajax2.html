@@ -14,7 +14,9 @@
   <script>
     $(function () {
       $('#get_data_button').click(function () {
-        $('#demo').load('ajax_info.txt');
+        $.getJSON('people.json', function (json) {
+          $('#demo').html(JSON.stringify(json));
+        });
       });
     });
   </script>
