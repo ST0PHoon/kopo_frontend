@@ -20,6 +20,6 @@ public class Word {
 
 	// i번째가 자음인가
 	public boolean isConsonant(int i) {
-		return !isVowel(i);
+		return !"aiueo".contains(letters.substring(i, i + 1));
 	}
 }
