@@ -22,4 +22,9 @@ public class Word {
 	public boolean isConsonant(int i) {
 		return !"aiueo".contains(letters.substring(i, i + 1));
 	}
+
+	// i번째가 자음인가
+	public boolean isConsonant2(int i) {
+		return !isVowel(i);
+	}
 }
