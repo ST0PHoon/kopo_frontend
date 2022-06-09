@@ -22,12 +22,13 @@ public class Algo2 {
       StringTokenizer st2 = new StringTokenizer(br.readLine());
       int x = Integer.parseInt(st2.nextToken());
       int y = Integer.parseInt(st2.nextToken());
+      String check = "noisy";
 
       if (Math.pow((x - a), 2) + Math.pow((y - b), 2) >= Math.pow(R, 2)) {
-        results.add("silent");
-      } else {
-        results.add("noisy");
+        check = "silent";
       }
+
+      results.add(check);
     }
 
     results.forEach((result) -> {
